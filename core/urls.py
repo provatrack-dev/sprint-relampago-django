@@ -9,4 +9,8 @@ urlpatterns = [
     path('projetos/<int:pk>/excluir/', views_projetos.projeto_excluir, name='projeto_excluir'),
 
     # --- Tarefas (VITOR) ---
+    path('tarefas/', views_tarefas.tarefa_lista, name='tarefa_lista'),
+    path('tarefas/nova/', views_tarefas.tarefa_criar, name='tarefa_criar'),
+    path('tarefas/<int:pk>/editar/', views_tarefas.tarefa_editar, name='tarefa_editar'),
+    path('tarefas/<int:pk>/excluir/', views_tarefas.tarefa_excluir, name='tarefa_excluir'),
 ]
