@@ -1,40 +1,40 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tarefas</title>
-    <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
-</head>
+{% block title %}Tarefas{% endblock %}
 
-<body>
-    <main class="container">
-        <h1>Tarefas</h1>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/tarefas.css' %}">
+{% endblock %}
 
-        {% if messages %}
-        <ul class="mensagens">
-            {% for message in messages %}<li>{{ message }}</li>{% endfor %}
-        </ul>
-        {% endif %}
+{% block content %}
+<div class="page-header">
+    <h1>Tarefas</h1>
+    <div class="acoes-topo">
+        <a class="btn" href="{% url 'tarefa_criar' %}">+ Nova tarefa</a>
+        <a class="btn btn-secundario" href="{% url 'projeto_lista' %}">Ver projetos</a>
+    </div>
+</div>
 
-        <a class="btn" href="{% url 'tarefa_criar' %}">Nova tarefa</a>
-        <ul class="lista">
-            {% for tarefa in tarefas %}
-            <li>
-                <strong>{{ tarefa.titulo }}</strong> ({{ tarefa.get_status_display }})<br>
-                Projeto: {{ tarefa.projeto.nome }}<br>
-                {% if tarefa.prazo %}Prazo: {{ tarefa.prazo|date:"d/m/Y" }}<br>{% endif %}
-                {{ tarefa.descricao }}<br>
-                <a class="btn" href="{% url 'tarefa_editar' tarefa.pk %}">Editar</a>
-                <a class="btn btn-danger" href="{% url 'tarefa_excluir' tarefa.pk %}">Excluir</a>
-            </li>
-            {% empty %}
-            <li>Nenhuma tarefa cadastrada.</li>
-            {% endfor %}
-        </ul>
-    </main>
-</body>
-
-</html>
+<ul class="lista">
+    {% for tarefa in tarefas %}
+    <li>
+        <div class="card-titulo">
+            <strong>{{ tarefa.titulo }}</strong>
+            <span class="badge badge-{{ tarefa.status }}">{{ tarefa.get_status_display }}</span>
+        </div>
+        <div class="card-meta">
+            Projeto: {{ tarefa.projeto.nome }}
+            {% if tarefa.prazo %} · Prazo: {{ tarefa.prazo|date:"d/m/Y" }}{% endif %}
+        </div>
+        {% if tarefa.descricao %}<p class="card-texto">{{ tarefa.descricao }}</p>{% endif %}
+        <div class="acoes">
+            <a class="btn" href="{% url 'tarefa_editar' tarefa.pk %}">Editar</a>
+            <a class="btn btn-danger" href="{% url 'tarefa_excluir' tarefa.pk %}">Excluir</a>
+        </div>
+    </li>
+    {% empty %}
+    <li class="vazio">Nenhuma tarefa cadastrada. Clique em "+ Nova tarefa" para começar.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

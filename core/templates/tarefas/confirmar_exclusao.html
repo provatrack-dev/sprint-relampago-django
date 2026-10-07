@@ -1,24 +1,18 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Excluir tarefa</title>
-    <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
-</head>
+{% block title %}Excluir tarefa{% endblock %}
 
-<body>
-    <main class="container">
-        <h1>Excluir tarefa</h1>
-        <p>Tem certeza que deseja excluir "{{ tarefa.titulo }}"?</p>
-        <form method="post">
-            {% csrf_token %}
+{% block content %}
+<h1>Excluir tarefa</h1>
+
+<div class="form-card">
+    <p>Tem certeza que deseja excluir "<strong>{{ tarefa.titulo }}</strong>"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="acoes">
             <button class="btn btn-danger" type="submit">Sim, excluir</button>
-        </form>
-        <p><a href="{% url 'tarefa_lista' %}">Cancelar</a></p>
-    </main>
-</body>
-
-</html>
+            <a class="btn btn-secundario" href="{% url 'tarefa_lista' %}">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

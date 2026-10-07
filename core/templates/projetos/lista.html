@@ -3,21 +3,29 @@
 {% block title %}Projetos{% endblock %}
 
 {% block content %}
-<h1>Projetos</h1>
-
-<a class="btn" href="{% url 'projeto_criar' %}">Novo projeto</a>
-<a class="btn btn-secundario" href="{% url 'tarefa_lista' %}">Ver tarefas</a>
+<div class="page-header">
+    <h1>Projetos</h1>
+    <div class="acoes-topo">
+        <a class="btn" href="{% url 'projeto_criar' %}">+ Novo projeto</a>
+        <a class="btn btn-secundario" href="{% url 'tarefa_lista' %}">Ver tarefas</a>
+    </div>
+</div>
 
 <ul class="lista">
     {% for projeto in projetos %}
     <li>
-        <strong>{{ projeto.nome }}</strong> (início: {{ projeto.data_inicio|date:"d/m/Y" }})<br>
-        {{ projeto.descricao }}<br>
-        <a class="btn" href="{% url 'projeto_editar' projeto.pk %}">Editar</a>
-        <a class="btn btn-danger" href="{% url 'projeto_excluir' projeto.pk %}">Excluir</a>
+        <div class="card-titulo"><strong>{{ projeto.nome }}</strong></div>
+        <div class="card-meta">
+            Início: {{ projeto.data_inicio|date:"d/m/Y" }} · Tarefas: {{ projeto.tarefas.count }}
+        </div>
+        <p class="card-texto">{{ projeto.descricao }}</p>
+        <div class="acoes">
+            <a class="btn" href="{% url 'projeto_editar' projeto.pk %}">Editar</a>
+            <a class="btn btn-danger" href="{% url 'projeto_excluir' projeto.pk %}">Excluir</a>
+        </div>
     </li>
     {% empty %}
-    <li>Nenhum projeto cadastrado.</li>
+    <li class="vazio">Nenhum projeto cadastrado. Clique em "+ Novo projeto" para começar.</li>
     {% endfor %}
 </ul>
 {% endblock %}
