@@ -184,3 +184,14 @@ ul.lista li.vazio {
   .navbar .marca { width: 100%; margin-bottom: 6px; }
   .page-header { flex-direction: column; align-items: flex-start; }
 }
+
+/*Rodapé sempre no final da tela*/
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main.container {
+  flex: 1;
+  width: 100%;
+}
