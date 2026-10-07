@@ -9,7 +9,7 @@ Sistema web em Django para gerenciar projetos e as tarefas de cada projeto, dese
 
 ## Entidades
 - *Projeto:* nome, descricao, data_inicio
-- *Tarefa:* titulo, prioridade, concluido, projeto (ForeignKey para Projeto)
+- *Tarefa:* titulo, descricao, status, (pendente, em andamento ou concluida), prazo, criada_em, projeto(ForeignKey para Projeto)
 
 ## Tecnologias
 - Python 3
