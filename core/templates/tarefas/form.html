@@ -1,24 +1,48 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tarefa</title>
-    <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
-</head>
+{% block title %}Tarefa{% endblock %}
 
-<body>
-    <main class="container">
-        <h1>Tarefa</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
+{% block content %}
+<h1>Tarefa</h1>
+
+<div class="form-card">
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            {{ form.titulo.label_tag }}
+            {{ form.titulo }}
+            {{ form.titulo.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.descricao.label_tag }}
+            {{ form.descricao }}
+            {{ form.descricao.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.status.label_tag }}
+            {{ form.status }}
+            {{ form.status.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.prazo.label_tag }}
+            {{ form.prazo }}
+            {{ form.prazo.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.projeto.label_tag }}
+            {{ form.projeto }}
+            {{ form.projeto.errors }}
+        </div>
+
+        <div class="acoes">
             <button class="btn" type="submit">Salvar</button>
-        </form>
-        <p><a href="{% url 'tarefa_lista' %}">Voltar</a></p>
-    </main>
-</body>
-
-</html>
+            <a class="btn btn-secundario" href="{% url 'tarefa_lista' %}">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

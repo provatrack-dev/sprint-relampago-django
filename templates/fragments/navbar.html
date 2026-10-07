@@ -1,4 +1,7 @@
 <nav class="navbar">
-    <a href="{% url 'projeto_lista' %}">Projetos</a>
-    <a href="{% url 'tarefa_lista' %}">Tarefas</a>
+    <span class="marca">Gestão de Projetos</span>
+    <a href="{% url 'projeto_lista' %}"
+       class="{% if 'projeto' in request.resolver_match.url_name %}ativo{% endif %}">Projetos</a>
+    <a href="{% url 'tarefa_lista' %}"
+       class="{% if 'tarefa' in request.resolver_match.url_name %}ativo{% endif %}">Tarefas</a>
 </nav>

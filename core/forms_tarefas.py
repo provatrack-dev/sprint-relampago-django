@@ -7,5 +7,12 @@ class TarefaForm(forms.ModelForm):
         model = Tarefa
         fields = ['titulo', 'descricao', 'status', 'prazo', 'projeto']
         widgets = {
-            'prazo': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
+            'titulo': forms.TextInput(attrs={'class': 'form-control'}),
+            'descricao': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
+            'prazo': forms.DateInput(
+                attrs={'class': 'form-control', 'type': 'date'},
+                format='%Y-%m-%d',
+            ),
+            'projeto': forms.Select(attrs={'class': 'form-control'}),
         }

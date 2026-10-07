@@ -4,10 +4,15 @@
 
 {% block content %}
 <h1>Excluir projeto</h1>
-<p>Tem certeza que deseja excluir "{{ projeto.nome }}"? As tarefas dele também serão excluídas.</p>
-<form method="post">
-    {% csrf_token %}
-    <button class="btn btn-danger" type="submit">Sim, excluir</button>
-</form>
-<p><a href="{% url 'projeto_lista' %}">Cancelar</a></p>
+
+<div class="form-card">
+    <p>Tem certeza que deseja excluir "<strong>{{ projeto.nome }}</strong>"? As tarefas dele também serão excluídas.</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="acoes">
+            <button class="btn btn-danger" type="submit">Sim, excluir</button>
+            <a class="btn btn-secundario" href="{% url 'projeto_lista' %}">Cancelar</a>
+        </div>
+    </form>
+</div>
 {% endblock %}
