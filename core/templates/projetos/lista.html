@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projetos</title>
+    <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
+</head>
+
+<body>
+    <main class="container">
+        <h1>Projetos</h1>
+        <a class="btn" href="{% url 'projeto_criar' %}">Novo projeto</a>
+        <ul class="lista">
+            {% for projeto in projetos %}
+            <li>
+                <strong>{{ projeto.nome }}</strong> (início: {{ projeto.data_inicio|date:"d/m/Y" }})<br>
+                {{ projeto.descricao }}
+            </li>
+            {% empty %}
+            <li>Nenhum projeto cadastrado.</li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+
+</html>
