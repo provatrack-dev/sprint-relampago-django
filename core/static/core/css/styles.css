@@ -81,4 +81,24 @@ form textarea {
 /* ===== Projetos (Samuel) ===== */
 
 
+.btn-secundario { background: #6c757d; }
+.btn-secundario:hover { background: #565e64; }
+
+.mb-3 { margin-bottom: 14px; }
+.form-control {
+  width: 100%;
+  max-width: 420px;
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.errorlist {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0 0;
+  color: #c0392b;
+  font-size: 13px;
+}
+
 /* ===== Tarefas (Vitor) ===== */
