@@ -1,38 +1,23 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Projetos</title>
-    <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
-</head>
+{% block title %}Projetos{% endblock %}
 
-<body>
-    <main class="container">
-        <h1>Projetos</h1>
+{% block content %}
+<h1>Projetos</h1>
 
-        {% if messages %}
-        <ul class="mensagens">
-            {% for message in messages %}<li>{{ message }}</li>{% endfor %}
-        </ul>
-        {% endif %}
+<a class="btn" href="{% url 'projeto_criar' %}">Novo projeto</a>
+<a class="btn btn-secundario" href="{% url 'tarefa_lista' %}">Ver tarefas</a>
 
-        <a class="btn" href="{% url 'projeto_criar' %}">Novo projeto</a>
-        <ul class="lista">
-            {% for projeto in projetos %}
-            <li>
-                <strong>{{ projeto.nome }}</strong> (início: {{ projeto.data_inicio|date:"d/m/Y" }})<br>
-                {{ projeto.descricao }}<br>
-                <a class="btn" href="{% url 'projeto_editar' projeto.pk %}">Editar</a>
-                <a class="btn btn-danger" href="{% url 'projeto_excluir' projeto.pk %}">Excluir</a>
-            </li>
-            {% empty %} 
-            <li>Nenhum projeto cadastrado.</li>
-            {% endfor %}
-        </ul>
-    </main>
-</body>
-
-</html>
+<ul class="lista">
+    {% for projeto in projetos %}
+    <li>
+        <strong>{{ projeto.nome }}</strong> (início: {{ projeto.data_inicio|date:"d/m/Y" }})<br>
+        {{ projeto.descricao }}<br>
+        <a class="btn" href="{% url 'projeto_editar' projeto.pk %}">Editar</a>
+        <a class="btn btn-danger" href="{% url 'projeto_excluir' projeto.pk %}">Excluir</a>
+    </li>
+    {% empty %}
+    <li>Nenhum projeto cadastrado.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

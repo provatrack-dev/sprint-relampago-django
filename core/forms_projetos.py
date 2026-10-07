@@ -7,5 +7,10 @@ class ProjetoForm(forms.ModelForm):
         model = Projeto
         fields = ['nome', 'descricao', 'data_inicio']
         widgets = {
-            'data_inicio': forms.DateInput(attrs={'type': 'date'}),
+            'nome': forms.TextInput(attrs={'class': 'form-control'}),
+            'descricao': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'data_inicio': forms.DateInput(
+                attrs={'class': 'form-control', 'type': 'date'},
+                format='%Y-%m-%d',
+            ),
         }
