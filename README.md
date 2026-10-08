@@ -1,5 +1,5 @@
 # Esta é uma alteração feita pelo Professor Raphael
-
+# Esta é uma alteração feita pelo Professor Raphael 2
 # sprint-relampago-django
 
 Sistema web em Django para gerenciar projetos e as tarefas de cada projeto, desenvolvido como atividade prática da disciplina de Desenvolvimento de Sistemas Web.
